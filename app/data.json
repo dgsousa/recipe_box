@@ -1,0 +1,13 @@
+var Data = [
+	{
+	"name": "Chez Beer",
+	"ingredients": ["cheez", "beer", "Nachos"]
+	},
+
+	{
+	"name": "Falafel",
+	"ingredients": ["big crunchy bread balls"]
+	}
+]
+
+module.exports = Data;

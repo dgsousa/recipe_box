@@ -1,0 +1,53 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.main {
+	width: 100%;
+	margin: 5% auto;
+	padding: 10px;
+	background-color: #4ABDAC;
+}
+
+#accordion {
+	width: 90%;
+	height: 90%;
+	margin: auto;
+	padding-top: 15px;
+}
+
+.recipe-header {
+	text-align: center;
+	padding-bottom: 30px;
+	border-bottom: 1px solid grey;
+	margin-bottom: 20px;
+}
+
+.buttonDiv {
+	margin-top: 20px;
+}
+
+button {
+	margin-right: 10px;
+}
+
+.btn:focus {
+	outline: none; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
