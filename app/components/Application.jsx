@@ -24,6 +24,7 @@ export default class Application extends React.Component{
 		}
 		this.state.recipes.splice(index, 1, newRecipe);
 		this.state.index = -1;
+		localStorage._recipes = JSON.stringify(this.state.recipes);
 		this.setState(this.state);
 	}
 
@@ -33,11 +34,13 @@ export default class Application extends React.Component{
 			ingredients: recipe.ingredients
 		}
 		this.state.recipes.push(newRecipe);
+		localStorage._recipes = JSON.stringify(this.state.recipes);
 		this.setState(this.state);
 	}
 
 	removeRecipe(index) {
 		this.state.recipes.splice(index, 1);
+		localStorage._recipes = JSON.stringify(this.state.recipes);
 		this.setState(this.state);
 	}
 
@@ -68,7 +71,8 @@ export default class Application extends React.Component{
 					onRemove={this.removeRecipe.bind(this)}/>
 				
 				<button 
-					className="btn btn-primary" 
+					className="btn btn-danger" 
+					id="bottom-button"
 					data-toggle="modal" 
 					data-target="#myModal"
 					onClick={this.resetCurrentRecipe.bind(this)}>

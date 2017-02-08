@@ -40,10 +40,10 @@ const Modal = (props)=>{
 							<div className="modal-footer">
 								<button 
 									type="submit" 
-									className="btn btn-primary" 
+									className="btn btn-danger" 
 									data-toggle="modal" 
 									data-target="#myModal">	
-									{props.index === -1 ? "Add": "Update"} 
+									{props.index === -1 ? "Add ": "Update "} 
 									Recipe
 								</button>
 					        	<button 
