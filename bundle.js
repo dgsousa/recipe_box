@@ -62,9 +62,13 @@
 
 	var _Application2 = _interopRequireDefault(_Application);
 
+	var _data = __webpack_require__(197);
+
+	var _data2 = _interopRequireDefault(_data);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_Application2.default, null), document.getElementById('app'));
+	_reactDom2.default.render(_react2.default.createElement(_Application2.default, { data: JSON.parse(localStorage._recipes) }), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -33212,10 +33216,10 @@
 
 	exports = module.exports = __webpack_require__(182)();
 	// imports
-
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Nunito);", ""]);
 
 	// module
-	exports.push([module.id, "* {\n  box-sizing: border-box; }\n\nbody {\n  width: 80%;\n  margin: 0 auto; }\n\n.main {\n  width: 100%;\n  margin: 5% auto;\n  padding: 10px;\n  background-color: #4ABDAC; }\n\n#accordion {\n  width: 90%;\n  height: 90%;\n  margin: auto;\n  padding-top: 15px; }\n\n.recipe-header {\n  text-align: center;\n  padding-bottom: 30px;\n  border-bottom: 1px solid grey;\n  margin-bottom: 20px; }\n\n.buttonDiv {\n  margin-top: 20px; }\n\nbutton {\n  margin-right: 10px; }\n\n.btn:focus {\n  outline: none; }\n", ""]);
+	exports.push([module.id, "* {\n  box-sizing: border-box; }\n\nbody {\n  background: #438496; }\n\n.main {\n  background: #438496; }\n\n.btn:focus {\n  outline: none; }\n\nbody {\n  font-family: 'Nunito'; }\n\n.btn {\n  font-family: 'Nunito'; }\n\n.recipe-header {\n  text-align: center; }\n\nbody {\n  width: 80%;\n  margin: 0 auto; }\n\n.main {\n  width: 100%;\n  margin: 5% auto;\n  padding: 10px; }\n\n#accordion {\n  width: 90%;\n  height: 90%;\n  margin: auto;\n  padding-top: 15px; }\n\n#bottom-button {\n  margin-left: 6%; }\n\n.recipe-header {\n  padding-bottom: 30px;\n  border-bottom: 1px solid grey;\n  margin-bottom: 20px; }\n\n.buttonDiv {\n  margin-top: 20px; }\n\nbutton {\n  margin-right: 10px; }\n", ""]);
 
 	// exports
 
@@ -33244,10 +33248,6 @@
 
 	var _ModalContainer2 = _interopRequireDefault(_ModalContainer);
 
-	var _data = __webpack_require__(197);
-
-	var _data2 = _interopRequireDefault(_data);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33265,12 +33265,12 @@
 			var _this = _possibleConstructorReturn(this, (Application.__proto__ || Object.getPrototypeOf(Application)).call(this, props));
 
 			_this.state = {
-				recipes: _data2.default,
+				recipes: _this.props.data,
 				currentRecipe: {
 					name: '',
 					ingredients: []
 				},
-				index: null
+				index: -1
 			};
 			return _this;
 		}
@@ -33280,9 +33280,11 @@
 			value: function updateRecipe(recipe, index) {
 				var newRecipe = {
 					name: recipe.name,
-					ingredients: recipe.ingredients.split(',')
+					ingredients: recipe.ingredients
 				};
 				this.state.recipes.splice(index, 1, newRecipe);
+				this.state.index = -1;
+				localStorage._recipes = JSON.stringify(this.state.recipes);
 				this.setState(this.state);
 			}
 		}, {
@@ -33290,9 +33292,17 @@
 			value: function addRecipe(recipe) {
 				var newRecipe = {
 					name: recipe.name,
-					ingredients: recipe.ingredients.split(',')
+					ingredients: recipe.ingredients
 				};
 				this.state.recipes.push(newRecipe);
+				localStorage._recipes = JSON.stringify(this.state.recipes);
+				this.setState(this.state);
+			}
+		}, {
+			key: 'removeRecipe',
+			value: function removeRecipe(index) {
+				this.state.recipes.splice(index, 1);
+				localStorage._recipes = JSON.stringify(this.state.recipes);
 				this.setState(this.state);
 			}
 		}, {
@@ -33300,7 +33310,7 @@
 			value: function setCurrentRecipe(index) {
 				this.state.currentRecipe = {
 					name: this.state.recipes[index].name,
-					ingredients: this.state.recipes[index].ingredients.join(',')
+					ingredients: this.state.recipes[index].ingredients
 				};
 				this.state.index = index;
 				this.setState(this.state);
@@ -33312,7 +33322,7 @@
 					name: '',
 					ingredients: []
 				};
-				this.state.index = null;
+				this.state.index = -1;
 				this.setState(this.state);
 			}
 		}, {
@@ -33321,23 +33331,22 @@
 				return _react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(
-						'div',
-						{ className: 'main' },
-						_react2.default.createElement(_Accordion2.default, {
-							recipes: this.state.recipes,
-							editRecipe: this.setCurrentRecipe.bind(this) })
-					),
+					_react2.default.createElement(_Accordion2.default, {
+						recipes: this.state.recipes,
+						editRecipe: this.setCurrentRecipe.bind(this),
+						onRemove: this.removeRecipe.bind(this) }),
 					_react2.default.createElement(
 						'button',
 						{
-							className: 'btn btn-primary',
+							className: 'btn btn-danger',
+							id: 'bottom-button',
 							'data-toggle': 'modal',
 							'data-target': '#myModal',
 							onClick: this.resetCurrentRecipe.bind(this) },
 						'Add A Recipe!'
 					),
-					_react2.default.createElement(_ModalContainer2.default, { currentRecipe: this.state.currentRecipe,
+					_react2.default.createElement(_ModalContainer2.default, {
+						currentRecipe: this.state.currentRecipe,
 						index: this.state.index,
 						add: this.addRecipe.bind(this),
 						update: this.updateRecipe.bind(this) })
@@ -33349,6 +33358,14 @@
 	}(_react2.default.Component);
 
 	exports.default = Application;
+
+
+	Application.propTypes = {
+		data: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
+			name: _react2.default.PropTypes.string.isRequired,
+			ingredients: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string.isRequired)
+		}))
+	};
 
 /***/ },
 /* 192 */
@@ -33384,40 +33401,34 @@
 		function Accordion(props) {
 			_classCallCheck(this, Accordion);
 
-			var _this = _possibleConstructorReturn(this, (Accordion.__proto__ || Object.getPrototypeOf(Accordion)).call(this, props));
-
-			_this.state = {
-				recipes: _this.props.recipes
-			};
-			return _this;
+			return _possibleConstructorReturn(this, (Accordion.__proto__ || Object.getPrototypeOf(Accordion)).call(this, props));
 		}
 
 		_createClass(Accordion, [{
-			key: 'removeRecipe',
-			value: function removeRecipe(index) {
-				this.state.recipes.splice(index, 1);
-				this.setState(this.state.recipes);
-			}
-		}, {
 			key: 'render',
 			value: function render() {
-				var recipe = this.state.recipes.map(function (recipe, index) {
+				var recipe = this.props.recipes.map(function (recipe, index) {
 					return _react2.default.createElement(_Recipe2.default, {
 						recipe: recipe,
 						key: index,
 						index: index,
 						onRemove: function () {
-							this.removeRecipe(index);
+							this.props.onRemove(index);
 						}.bind(this),
 						onEdit: function () {
 							this.props.editRecipe(index);
 						}.bind(this)
 					});
 				}.bind(this));
+
 				return _react2.default.createElement(
 					'div',
-					{ id: 'accordion', role: 'tablist', 'aria-multiselectable': 'true' },
-					recipe
+					{ className: 'main' },
+					_react2.default.createElement(
+						'div',
+						{ id: 'accordion', role: 'tablist', 'aria-multiselectable': 'true' },
+						recipe
+					)
 				);
 			}
 		}]);
@@ -33426,6 +33437,16 @@
 	}(_react2.default.Component);
 
 	exports.default = Accordion;
+
+
+	Accordion.propTypes = {
+		recipes: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
+			name: _react2.default.PropTypes.string.isRequired,
+			ingredients: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string.isRequired)
+		})),
+		editRecipe: _react2.default.PropTypes.func.isRequired,
+		onRemove: _react2.default.PropTypes.func.isRequired
+	};
 
 /***/ },
 /* 193 */
@@ -33502,17 +33523,14 @@
 									'Ingredients'
 								)
 							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'recipe-list' },
-								_react2.default.createElement(_Ingredients2.default, { ingredients: this.props.recipe.ingredients })
-							),
+							_react2.default.createElement(_Ingredients2.default, { ingredients: this.props.recipe.ingredients }),
 							_react2.default.createElement(
 								'div',
 								{ className: 'buttonDiv' },
 								_react2.default.createElement(
 									'button',
-									{ className: 'btn btn-danger',
+									{
+										className: 'btn btn-danger',
 										onClick: this.props.onRemove },
 									'Delete'
 								),
@@ -33535,6 +33553,17 @@
 	}(_react2.default.Component);
 
 	exports.default = Recipe;
+
+
+	Recipe.propTypes = {
+		recipe: _react2.default.PropTypes.shape({
+			name: _react2.default.PropTypes.string.isRequired,
+			ingredients: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string.isRequired)
+		}),
+		index: _react2.default.PropTypes.number.isRequired,
+		onRemove: _react2.default.PropTypes.func.isRequired,
+		onEdit: _react2.default.PropTypes.func.isRequired
+	};
 
 /***/ },
 /* 194 */
@@ -33580,9 +33609,13 @@
 					);
 				});
 				return _react2.default.createElement(
-					"ul",
-					{ className: "list-group" },
-					listItem
+					"div",
+					{ className: "recipe-list" },
+					_react2.default.createElement(
+						"ul",
+						{ className: "list-group" },
+						listItem
+					)
 				);
 			}
 		}]);
@@ -33591,6 +33624,11 @@
 	}(_react2.default.Component);
 
 	exports.default = Ingredients;
+
+
+	Ingredients.propTypes = {
+		ingredients: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string.isRequired)
+	};
 
 /***/ },
 /* 195 */
@@ -33630,7 +33668,8 @@
 
 			_this.state = {
 				name: '',
-				ingredients: ''
+				ingredients: [],
+				index: _this.props.index
 			};
 			return _this;
 		}
@@ -33641,7 +33680,8 @@
 				if (this.props !== nextProps) {
 					this.setState({
 						name: nextProps.currentRecipe.name,
-						ingredients: nextProps.currentRecipe.ingredients
+						ingredients: nextProps.currentRecipe.ingredients,
+						index: nextProps.index
 					});
 				}
 			}
@@ -33656,7 +33696,7 @@
 			key: 'updateIngredients',
 			value: function updateIngredients(e) {
 				this.setState({
-					ingredients: e.target.value
+					ingredients: e.target.value.split(',')
 				});
 			}
 		}, {
@@ -33664,10 +33704,6 @@
 			value: function updateRecipe(e) {
 				e.preventDefault();
 				this.props.update(this.state, this.props.index);
-				this.setState({
-					name: '',
-					ingredients: ''
-				});
 			}
 		}, {
 			key: 'addRecipe',
@@ -33676,16 +33712,12 @@
 				if (this.state.name && this.state.ingredients) {
 					this.props.add(this.state);
 				}
-				this.setState({
-					name: '',
-					ingredients: ''
-				});
 			}
 		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(_Modal2.default, {
-					onSubmit: this.props.index === null ? this.addRecipe.bind(this) : this.updateRecipe.bind(this),
+					onSubmit: this.props.index === -1 ? this.addRecipe.bind(this) : this.updateRecipe.bind(this),
 					onChangeName: this.updateName.bind(this),
 					onChangeIngredient: this.updateIngredients.bind(this),
 					name: this.state.name,
@@ -33701,11 +33733,13 @@
 
 
 	ModalContainer.propTypes = {
-		index: _react2.default.PropTypes.number
-	};
-
-	ModalContainer.defaultProps = {
-		index: -1
+		currentRecipe: _react2.default.PropTypes.shape({
+			name: _react2.default.PropTypes.string.isRequired,
+			ingredients: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string.isRequired)
+		}),
+		index: _react2.default.PropTypes.number.isRequired,
+		add: _react2.default.PropTypes.func.isRequired,
+		update: _react2.default.PropTypes.func.isRequired
 	};
 
 /***/ },
@@ -33718,129 +33752,115 @@
 		value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var Modal = function Modal(props) {
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Modal = function (_React$Component) {
-		_inherits(Modal, _React$Component);
-
-		function Modal(props) {
-			_classCallCheck(this, Modal);
-
-			return _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).call(this, props));
-		}
-
-		_createClass(Modal, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
+		return _react2.default.createElement(
+			"div",
+			{ className: "modal fade", id: "myModal" },
+			_react2.default.createElement(
+				"div",
+				{ className: "modal-dialog", role: "document" },
+				_react2.default.createElement(
 					"div",
-					{ className: "modal fade", id: "myModal" },
+					{ className: "modal-content" },
 					_react2.default.createElement(
 						"div",
-						{ className: "modal-dialog", role: "document" },
+						{ className: "modal-header" },
 						_react2.default.createElement(
-							"div",
-							{ className: "modal-content" },
+							"h5",
+							{ className: "modal-title" },
+							props.index === -1 ? "Add a" : "Update",
+							" Recipe"
+						),
+						_react2.default.createElement(
+							"button",
+							{ type: "button", className: "close", "data-dismiss": "modal", "aria-label": "Close" },
+							_react2.default.createElement(
+								"span",
+								{ "aria-hidden": "true" },
+								"\xD7"
+							)
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "modal-body" },
+						_react2.default.createElement(
+							"form",
+							{ onSubmit: props.onSubmit },
 							_react2.default.createElement(
 								"div",
-								{ className: "modal-header" },
+								{ className: "form-group" },
 								_react2.default.createElement(
-									"h5",
-									{ className: "modal-title" },
-									"Add a Recipe"
+									"label",
+									{
+										htmlFor: "recipe-name" },
+									"Recipe"
 								),
-								_react2.default.createElement(
-									"button",
-									{ type: "button", className: "close", "data-dismiss": "modal", "aria-label": "Close" },
-									_react2.default.createElement(
-										"span",
-										{ "aria-hidden": "true" },
-										"\xD7"
-									)
-								)
+								_react2.default.createElement("input", {
+									className: "form-control",
+									type: "text",
+									value: props.name,
+									onChange: props.onChangeName })
 							),
 							_react2.default.createElement(
 								"div",
-								{ className: "modal-body" },
+								{ className: "form-group" },
 								_react2.default.createElement(
-									"form",
-									{ onSubmit: this.props.onSubmit },
-									_react2.default.createElement(
-										"div",
-										{ className: "form-group" },
-										_react2.default.createElement(
-											"label",
-											{
-												htmlFor: "recipe-name" },
-											"Recipe"
-										),
-										_react2.default.createElement("input", {
-											className: "form-control",
-											type: "text",
-											value: this.props.name,
-											onChange: this.props.onChangeName
-										})
-									),
-									_react2.default.createElement(
-										"div",
-										{ className: "form-group" },
-										_react2.default.createElement(
-											"label",
-											{
-												htmlFor: "indgredients" },
-											"Ingredients"
-										),
-										_react2.default.createElement("input", {
-											className: "form-control",
-											type: "textarea",
-											value: this.props.ingredients,
-											onChange: this.props.onChangeIngredient
-										})
-									),
-									_react2.default.createElement(
-										"div",
-										{ className: "modal-footer" },
-										_react2.default.createElement(
-											"button",
-											{
-												type: "submit",
-												className: "btn btn-primary",
-												"data-toggle": "modal",
-												"data-target": "#myModal" },
-											this.props.index === -1 ? "Add" : "Update",
-											" Recipe"
-										),
-										_react2.default.createElement(
-											"button",
-											{
-												type: "button",
-												className: "btn btn-secondary",
-												"data-dismiss": "modal" },
-											"Close"
-										)
-									)
+									"label",
+									{
+										htmlFor: "indgredients" },
+									"Ingredients"
+								),
+								_react2.default.createElement("input", {
+									className: "form-control",
+									type: "textarea",
+									value: props.ingredients,
+									onChange: props.onChangeIngredient })
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "modal-footer" },
+								_react2.default.createElement(
+									"button",
+									{
+										type: "submit",
+										className: "btn btn-danger",
+										"data-toggle": "modal",
+										"data-target": "#myModal" },
+									props.index === -1 ? "Add " : "Update ",
+									"Recipe"
+								),
+								_react2.default.createElement(
+									"button",
+									{
+										type: "button",
+										className: "btn btn-secondary",
+										"data-dismiss": "modal" },
+									"Close"
 								)
 							)
 						)
 					)
-				);
-			}
-		}]);
+				)
+			)
+		);
+	};
 
-		return Modal;
-	}(_react2.default.Component);
+	Modal.propTypes = {
+		onSubmit: _react2.default.PropTypes.func.isRequired,
+		onChangeName: _react2.default.PropTypes.func.isRequired,
+		onChangeIngredient: _react2.default.PropTypes.func.isRequired,
+		name: _react2.default.PropTypes.string.isRequired,
+		ingredients: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string.isRequired),
+		index: _react2.default.PropTypes.number.isRequired
+	};
 
 	exports.default = Modal;
 
