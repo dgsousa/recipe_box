@@ -8,13 +8,13 @@ import Data from './data.json'
 
 var data = function() {
 	console.log('test1')
-	if(JSON.parse(localStorage._recipes)) {
-		return JSON.parse(localStorage._recipes);
-	} else {
-		console.log('test')
-		return Data;
-	}
+	// if(JSON.parse(localStorage._recipes)) {
+	// 	return JSON.parse(localStorage._recipes);
+	// } else {
+	// 	console.log('test')
+	// 	return Data;
+	// }
 }
 
 
-ReactDOM.render(<Application data={data()}/>, document.getElementById('app'));
+ReactDOM.render(<Application data={Data}/>, document.getElementById('app'));
