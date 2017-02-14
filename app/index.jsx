@@ -15,4 +15,4 @@ var data = function() {
 }
 
 
-ReactDOM.render(<Application data={JSON.parse(localStorage._recipes)}/>, document.getElementById('app'));
+ReactDOM.render(<Application data={data()}/>, document.getElementById('app'));
