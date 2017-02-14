@@ -11,6 +11,7 @@ var data = function() {
 		console.log(JSON.parse(localStorage._recipes))
 		return JSON.parse(localStorage._recipes);
 	} else {
+		console.log('test')
 		return '';
 	}
 }
