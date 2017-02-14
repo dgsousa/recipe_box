@@ -27,17 +27,7 @@ module.exports = {
 		]
 	},
 
-	postcss: {},
+	postcss: {}
 	
-	plugins: [
-				  new webpack.ProvidePlugin({
-				    $: "jquery",
-				    jQuery: "jquery",
-				    "window.jQuery": "jquery",
-				    Tether: "tether",
-				    "window.Tether": "tether",
-				    Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
-				    Util: "exports-loader?Util!bootstrap/js/dist/util",
-				  })
-			]
+	
 }
