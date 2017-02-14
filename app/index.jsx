@@ -7,12 +7,12 @@ import Data from './data.json'
 
 
 var data = function() {
+	console.log('test1')
 	if(localStorage._recipes) {
-		console.log(JSON.parse(localStorage._recipes))
 		return JSON.parse(localStorage._recipes);
 	} else {
 		console.log('test')
-		return '';
+		return Data;
 	}
 }
 
