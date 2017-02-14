@@ -1,4 +1,4 @@
-var Data = [
+[
 	{
 	"name": "Chez Beer",
 	"ingredients": ["cheez", "beer", "Nachos"]
@@ -9,5 +9,3 @@ var Data = [
 	"ingredients": ["big crunchy bread balls"]
 	}
 ]
-
-module.exports = Data;
