@@ -8,7 +8,7 @@ import Data from './data.json'
 
 var data = function() {
 	console.log('test1')
-	if(localStorage._recipes) {
+	if(JSON.parse(localStorage._recipes)) {
 		return JSON.parse(localStorage._recipes);
 	} else {
 		console.log('test')
