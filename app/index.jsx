@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import 'bootstrap-loader';
 import './scss/application.scss';
 import Application from './components/Application.jsx';
-import Data from './data.json'
+import Data from './data.json';
 
 
 
