@@ -5,7 +5,13 @@ import './scss/application.scss';
 import Application from './components/Application.jsx';
 import Data from './data.json';
 
+var data = function() {
+	if(localStorage._recipes) {
+		return JSON.parse(localStorage._recipes)
+	} else {
+		return Data.recipes
+	}
+}
 
-
-ReactDOM.render(<Application data={Data.recipes}/>, document.getElementById('app'));
+ReactDOM.render(<Application data={data()}/>, document.getElementById('app'));
 
