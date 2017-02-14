@@ -5,6 +5,7 @@ import './scss/application.scss';
 import Application from './components/Application.jsx';
 import Data from './data.json'
 
+console.log(Data);
 
 var data = function() {
 	console.log('test1')
