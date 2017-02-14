@@ -1,11 +1,13 @@
-[
-	{
-	"name": "Chez Beer",
-	"ingredients": ["cheez", "beer", "Nachos"]
-	},
+{
+	"recipes": [
+		{
+		"name": "Chez Beer",
+		"ingredients": ["cheez", "beer", "Nachos"]
+		},
 
-	{
-	"name": "Falafel",
-	"ingredients": ["big crunchy bread balls"]
-	}
-]
+		{
+		"name": "Falafel",
+		"ingredients": ["big crunchy bread balls"]
+		}
+	]
+}

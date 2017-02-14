@@ -23,9 +23,20 @@ module.exports = {
       		{ 
       			test: /bootstrap\/dist\/js\/umd\//, 
       			loaders: ['imports?jQuery=jquery'] 
+      		},
+      		{ 
+      			test: /\.json$/, 
+      			loader: 'json' 
       		}
 		]
 	},
+
+	plugins: [
+	    new webpack.ProvidePlugin({
+	      $: "jquery",
+	      jQuery: "jquery"
+	    })
+  	],
 
 	postcss: {}
 	

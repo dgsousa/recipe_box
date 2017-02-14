@@ -91,12 +91,12 @@ export default class Application extends React.Component{
 	}
 }
 
-// Application.propTypes = {
-// 	data: React.PropTypes.arrayOf(React.PropTypes.shape({
-// 		name: React.PropTypes.string.isRequired,
-// 		ingredients: React.PropTypes.arrayOf(React.PropTypes.string.isRequired)
-// 	}))
-// }
+Application.propTypes = {
+	data: React.PropTypes.arrayOf(React.PropTypes.shape({
+		name: React.PropTypes.string.isRequired,
+		ingredients: React.PropTypes.arrayOf(React.PropTypes.string.isRequired)
+	}))
+}
 
 
 

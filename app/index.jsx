@@ -7,6 +7,5 @@ import Data from './data.json';
 
 
 
-
-ReactDOM.render(<Application data={Data}/>, document.getElementById('app'));
+ReactDOM.render(<Application data={Data.recipes}/>, document.getElementById('app'));
 
