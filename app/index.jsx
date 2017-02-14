@@ -7,4 +7,4 @@ import Data from './data.json'
 
 
 
-ReactDOM.render(<Application data={JSON.parse(localStorage._recipes) || null}/>, document.getElementById('app'));
+ReactDOM.render(<Application data={JSON.parse(localStorage._recipes)} || null/>, document.getElementById('app'));
