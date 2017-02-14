@@ -62,10 +62,6 @@
 
 	var _Application2 = _interopRequireDefault(_Application);
 
-	var _data = __webpack_require__(197);
-
-	var _data2 = _interopRequireDefault(_data);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	_reactDom2.default.render(_react2.default.createElement(_Application2.default, { data: JSON.parse(localStorage._recipes) }), document.getElementById('app'));
@@ -33863,24 +33859,6 @@
 	};
 
 	exports.default = Modal;
-
-/***/ },
-/* 197 */
-/***/ function(module, exports) {
-
-	var Data = [
-		{
-		"name": "Chez Beer",
-		"ingredients": ["cheez", "beer", "Nachos"]
-		},
-
-		{
-		"name": "Falafel",
-		"ingredients": ["big crunchy bread balls"]
-		}
-	]
-
-	module.exports = Data;
 
 /***/ }
 /******/ ]);
