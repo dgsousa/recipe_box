@@ -33215,7 +33215,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Nunito);", ""]);
 
 	// module
-	exports.push([module.id, "* {\n  box-sizing: border-box; }\n\nbody {\n  background: #438496; }\n\n.main {\n  background: #438496; }\n\n.btn:focus {\n  outline: none; }\n\nbody {\n  font-family: 'Nunito'; }\n\n.btn {\n  font-family: 'Nunito'; }\n\n.recipe-header {\n  text-align: center; }\n\nbody {\n  width: 80%;\n  margin: 0 auto; }\n\n.main {\n  width: 100%;\n  margin: 5% auto;\n  padding: 10px; }\n\n#accordion {\n  width: 90%;\n  height: 90%;\n  margin: auto;\n  padding-top: 15px; }\n\n#bottom-button {\n  margin-left: 6%; }\n\n.recipe-header {\n  padding-bottom: 30px;\n  border-bottom: 1px solid grey;\n  margin-bottom: 20px; }\n\n.buttonDiv {\n  margin-top: 20px; }\n\nbutton {\n  margin-right: 10px; }\n", ""]);
+	exports.push([module.id, "* {\n  box-sizing: border-box; }\n\nbody {\n  background: #438496; }\n\n.main {\n  background: #438496; }\n\n.btn:focus {\n  outline: none; }\n\nbody {\n  font-family: 'Nunito'; }\n\n.btn {\n  font-family: 'Nunito'; }\n\n.recipe-header {\n  text-align: center; }\n\nbody {\n  width: 80%;\n  margin: 20% auto; }\n\n.main {\n  width: 100%;\n  margin: 5% auto;\n  padding: 10px; }\n\n#accordion {\n  width: 90%;\n  height: 90%;\n  margin: auto;\n  padding-top: 15px; }\n\n#bottom-button {\n  margin-left: 6%; }\n\n.recipe-header {\n  padding-bottom: 30px;\n  border-bottom: 1px solid grey;\n  margin-bottom: 20px; }\n\n.buttonDiv {\n  margin-top: 20px; }\n\nbutton {\n  margin-right: 10px; }\n\n.modal {\n  margin-top: 10%; }\n", ""]);
 
 	// exports
 
