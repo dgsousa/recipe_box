@@ -64,7 +64,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_Application2.default, { data: JSON.parse(localStorage._recipes) }), document.getElementById('app'));
+	_reactDom2.default.render(_react2.default.createElement(_Application2.default, { data: JSON.parse(localStorage._recipes || "[]") }), document.getElementById('app'));
 
 /***/ },
 /* 1 */
