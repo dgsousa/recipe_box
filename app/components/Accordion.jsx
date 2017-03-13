@@ -9,17 +9,17 @@ export default class Accordion extends React.Component{
 	}
 
 	render() {
-		let recipe = this.props.recipes.map(function(recipe, index) {
+		let recipe = this.props.recipes.map((recipe, index)=> {
 			return (
 				<Recipe 
 					recipe={recipe} 
 					key={index} 
 					index={index}
-					onRemove={function() {this.props.onRemove(index)}.bind(this)}
-					onEdit={function() {this.props.editRecipe(index)}.bind(this)}
+					onRemove={()=> {this.props.onRemove(index)}}
+					onEdit={()=> {this.props.editRecipe(index)}}
 				/>
 			)
-		}.bind(this))
+		})
 		
 		return (
 			<div className="main">
