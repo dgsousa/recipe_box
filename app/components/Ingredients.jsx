@@ -9,7 +9,7 @@ export default class Ingredients extends React.Component{
 	}
 	
 	render() {
-		var listItem = this.props.ingredients.map(function(ingredient, index) {
+		let listItem = this.props.ingredients.map(function(ingredient, index) {
 			return (
 				<li className="list-group-item" key={index}>{ingredient}</li>
 			)

@@ -1,0 +1,22 @@
+{
+ "bootstrapVersion": 4,
+ "styleLoaders": ["style-loader", "css-loader", "sass-loader"],
+ "styles": {   
+    "animation": true,
+    "buttons": true,
+    "card": true,
+    "close": true,
+    "list-group": true,
+    "forms": true,
+    "mixins": true,
+    "modal": true,
+    "reboot": true,
+    "type": true,
+    "tooltip": true,
+    "utilities": true
+ },
+ "scripts": { 
+    "modal": true,
+    "collapse": true
+ }
+}

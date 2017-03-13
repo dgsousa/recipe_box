@@ -18,7 +18,7 @@ export default class Application extends React.Component{
 	}
 
 	updateRecipe(recipe, index) {
-		var newRecipe = {
+		let newRecipe = {
 			name: recipe.name,
 			ingredients: recipe.ingredients
 		}
@@ -29,7 +29,7 @@ export default class Application extends React.Component{
 	}
 
 	addRecipe(recipe) {
-		var newRecipe = {
+		let newRecipe = {
 			name: recipe.name,
 			ingredients: recipe.ingredients
 		}

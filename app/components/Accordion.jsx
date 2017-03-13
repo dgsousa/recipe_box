@@ -9,7 +9,7 @@ export default class Accordion extends React.Component{
 	}
 
 	render() {
-		var recipe = this.props.recipes.map(function(recipe, index) {
+		let recipe = this.props.recipes.map(function(recipe, index) {
 			return (
 				<Recipe 
 					recipe={recipe} 
