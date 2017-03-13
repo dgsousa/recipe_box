@@ -33403,19 +33403,21 @@
 		_createClass(Accordion, [{
 			key: 'render',
 			value: function render() {
+				var _this2 = this;
+
 				var recipe = this.props.recipes.map(function (recipe, index) {
 					return _react2.default.createElement(_Recipe2.default, {
 						recipe: recipe,
 						key: index,
 						index: index,
-						onRemove: function () {
-							this.props.onRemove(index);
-						}.bind(this),
-						onEdit: function () {
-							this.props.editRecipe(index);
-						}.bind(this)
+						onRemove: function onRemove() {
+							_this2.props.onRemove(index);
+						},
+						onEdit: function onEdit() {
+							_this2.props.editRecipe(index);
+						}
 					});
-				}.bind(this));
+				});
 
 				return _react2.default.createElement(
 					'div',
