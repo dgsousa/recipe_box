@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {React, PropTypes} from 'react';
 import Accordion from './Accordion.jsx';
 import ModalContainer from './ModalContainer.jsx';
 
 
 
-export default class Application extends React.Component{
+export default class Application extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -93,9 +93,9 @@ export default class Application extends React.Component{
 }
 
 Application.propTypes = {
-	data: React.PropTypes.arrayOf(React.PropTypes.shape({
-		name: React.PropTypes.string.isRequired,
-		ingredients: React.PropTypes.arrayOf(React.PropTypes.string.isRequired)
+	data: PropTypes.arrayOf(React.PropTypes.shape({
+		name: PropTypes.string.isRequired,
+		ingredients: PropTypes.arrayOf(React.PropTypes.string.isRequired)
 	}))
 }
 

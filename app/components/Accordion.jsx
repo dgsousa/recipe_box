@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import Recipe from './Recipe.jsx';
 
 
 
-export default class Accordion extends React.Component{
+export default class Accordion extends Component{
 	constructor(props) {
 		super(props);
 	}
@@ -33,12 +33,12 @@ export default class Accordion extends React.Component{
 
 
 Accordion.propTypes = {
-	recipes: React.PropTypes.arrayOf(React.PropTypes.shape({
-		name: React.PropTypes.string.isRequired,
-		ingredients: React.PropTypes.arrayOf(React.PropTypes.string.isRequired)
+	recipes: PropTypes.arrayOf(React.PropTypes.shape({
+		name: PropTypes.string.isRequired,
+		ingredients: PropTypes.arrayOf(React.PropTypes.string.isRequired)
 	})),
-	editRecipe: React.PropTypes.func.isRequired,
-	onRemove: React.PropTypes.func.isRequired
+	editRecipe: PropTypes.func.isRequired,
+	onRemove: PropTypes.func.isRequired
 }
 
 

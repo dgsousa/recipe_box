@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Ingredients from './Ingredients.jsx';
 
 
@@ -44,13 +44,13 @@ const Recipe = (props) => {
 }
 
 Recipe.propTypes ={
-	recipe: React.PropTypes.shape({
-		name: React.PropTypes.string.isRequired,
-		ingredients: React.PropTypes.arrayOf(React.PropTypes.string.isRequired)
+	recipe: PropTypes.shape({
+		name: PropTypes.string.isRequired,
+		ingredients: PropTypes.arrayOf(React.PropTypes.string.isRequired)
 	}),
-	index: React.PropTypes.number.isRequired,
-	onRemove: React.PropTypes.func.isRequired,
-	onEdit: React.PropTypes.func.isRequired
+	index: PropTypes.number.isRequired,
+	onRemove: PropTypes.func.isRequired,
+	onEdit: PropTypes.func.isRequired
 }
 
 export default Recipe;

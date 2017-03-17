@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 
 
 
 
-export default class Ingredients extends React.Component{
+export default class Ingredients extends Component{
 	constructor(props) {
 		super(props);
 	}
@@ -26,5 +26,5 @@ export default class Ingredients extends React.Component{
 
 
 Ingredients.propTypes = {
-	ingredients: React.PropTypes.arrayOf(React.PropTypes.string.isRequired)
+	ingredients: PropTypes.arrayOf(React.PropTypes.string.isRequired)
 }

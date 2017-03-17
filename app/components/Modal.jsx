@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 
 const Modal = (props)=>{
@@ -62,12 +62,12 @@ const Modal = (props)=>{
 }
 
 Modal.propTypes = {
-	onSubmit: React.PropTypes.func.isRequired,
-	onChangeName: React.PropTypes.func.isRequired,
-	onChangeIngredient: React.PropTypes.func.isRequired,
-	name: React.PropTypes.string.isRequired,
-	ingredients: React.PropTypes.arrayOf(React.PropTypes.string.isRequired),
-	index: React.PropTypes.number.isRequired
+	onSubmit: PropTypes.func.isRequired,
+	onChangeName: PropTypes.func.isRequired,
+	onChangeIngredient: PropTypes.func.isRequired,
+	name: PropTypes.string.isRequired,
+	ingredients: PropTypes.arrayOf(React.PropTypes.string.isRequired),
+	index: PropTypes.number.isRequired
 }
 
 export default Modal;

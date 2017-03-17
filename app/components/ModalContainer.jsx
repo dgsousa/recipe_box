@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import Modal from './Modal.jsx';
 
-export default class ModalContainer extends React.Component {
+export default class ModalContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -60,13 +60,13 @@ export default class ModalContainer extends React.Component {
 
 
 ModalContainer.propTypes = {
-	currentRecipe: React.PropTypes.shape({
-		name: React.PropTypes.string.isRequired,
-		ingredients: React.PropTypes.arrayOf(React.PropTypes.string.isRequired)
+	currentRecipe: PropTypes.shape({
+		name: PropTypes.string.isRequired,
+		ingredients: PropTypes.arrayOf(React.PropTypes.string.isRequired)
 	}),
-	index: React.PropTypes.number.isRequired,
-	add: React.PropTypes.func.isRequired,
-	update: React.PropTypes.func.isRequired
+	index: PropTypes.number.isRequired,
+	add: PropTypes.func.isRequired,
+	update: PropTypes.func.isRequired
 }
 
 
