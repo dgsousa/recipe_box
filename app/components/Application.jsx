@@ -1,4 +1,4 @@
-import React, {React, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Accordion from './Accordion.jsx';
 import ModalContainer from './ModalContainer.jsx';
 
