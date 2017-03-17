@@ -39,7 +39,7 @@ export default class Application extends React.Component{
 	removeRecipe(index) {
 		let recipes = this.state.recipes;
 		recipes.splice(index, 1);
-		this.state({
+		this.setState({
 			recipes: recipes
 		})
 		localStorage._recipes = JSON.stringify(this.state.recipes);
