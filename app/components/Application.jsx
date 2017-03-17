@@ -18,7 +18,7 @@ export default class Application extends Component{
 	}
 
 	updateRecipe(recipe, index) {
-		let recipes = this.state.recipes;
+		const recipes = this.state.recipes;
 		recipes.splice(index, 1, recipe);
 		this.setState({
 			recipes: recipes,
@@ -28,7 +28,7 @@ export default class Application extends Component{
 	}
 
 	addRecipe(recipe) {
-		let recipes = this.state.recipes;
+		const recipes = this.state.recipes;
 		recipes.push(recipe);
 		this.setState({
 			recipes: recipes
@@ -37,7 +37,7 @@ export default class Application extends Component{
 	}
 
 	removeRecipe(index) {
-		let recipes = this.state.recipes;
+		const recipes = this.state.recipes;
 		recipes.splice(index, 1);
 		this.setState({
 			recipes: recipes
@@ -45,24 +45,14 @@ export default class Application extends Component{
 		localStorage._recipes = JSON.stringify(this.state.recipes);
 	}
 
-	setCurrentRecipe(index) {
-		let currentRecipe = this.state.recipes[index];
+	setCurrentRecipe(index = -1) {
+		const currentRecipe = index === -1 ? {name: '', ingredients: []} : this.state.recipes[index];
 		this.setState({
 			currentRecipe: currentRecipe,
 			index: index
 		})
 	}
 
-	resetCurrentRecipe() {
-		let currentRecipe = {
-			name: '',
-			ingredients: []
-		}
-		this.setState({
-			currentRecipe: currentRecipe,
-			index: -1
-		});
-	}
 
 	render() {
 		return (
@@ -77,7 +67,7 @@ export default class Application extends Component{
 					id="bottom-button"
 					data-toggle="modal" 
 					data-target="#myModal"
-					onClick={this.resetCurrentRecipe.bind(this)}>
+					onClick={()=>{this.setCurrentRecipe()}}>
 					Add A Recipe!
 				</button>
 	

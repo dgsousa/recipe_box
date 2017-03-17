@@ -9,7 +9,7 @@ export default class Ingredients extends Component{
 	}
 	
 	render() {
-		let listItem = this.props.ingredients.map((ingredient, index)=> {
+		const listItem = this.props.ingredients.map((ingredient, index)=> {
 			return (
 				<li className="list-group-item" key={index}>{ingredient}</li>
 			)
