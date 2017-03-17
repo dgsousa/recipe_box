@@ -18,48 +18,50 @@ export default class Application extends React.Component{
 	}
 
 	updateRecipe(recipe, index) {
-		let newRecipe = {
-			name: recipe.name,
-			ingredients: recipe.ingredients
-		}
-		this.state.recipes.splice(index, 1, newRecipe);
-		this.state.index = -1;
+		let recipes = this.state.recipes;
+		recipes.splice(index, 1, recipe);
+		this.setState({
+			recipes: recipes,
+			index: -1
+		});
 		localStorage._recipes = JSON.stringify(this.state.recipes);
-		this.setState(this.state);
 	}
 
 	addRecipe(recipe) {
-		let newRecipe = {
-			name: recipe.name,
-			ingredients: recipe.ingredients
-		}
-		this.state.recipes.push(newRecipe);
+		let recipes = this.state.recipes;
+		recipes.push(recipe);
+		this.setState({
+			recipes: recipes
+		})
 		localStorage._recipes = JSON.stringify(this.state.recipes);
-		this.setState(this.state);
 	}
 
 	removeRecipe(index) {
-		this.state.recipes.splice(index, 1);
+		let recipes = this.state.recipes;
+		recipes.splice(index, 1);
+		this.state({
+			recipes: recipes
+		})
 		localStorage._recipes = JSON.stringify(this.state.recipes);
-		this.setState(this.state);
 	}
 
 	setCurrentRecipe(index) {
-		this.state.currentRecipe = {
-			name: this.state.recipes[index].name,
-			ingredients: this.state.recipes[index].ingredients
-		}
-		this.state.index = index;
-		this.setState(this.state);
+		let currentRecipe = this.state.recipes[index];
+		this.setState({
+			currentRecipe: currentRecipe,
+			index: index
+		})
 	}
 
 	resetCurrentRecipe() {
-		this.state.currentRecipe = {
+		let currentRecipe = {
 			name: '',
 			ingredients: []
-		};
-		this.state.index = -1;
-		this.setState(this.state);
+		}
+		this.setState({
+			currentRecipe: currentRecipe,
+			index: -1
+		});
 	}
 
 	render() {
@@ -84,7 +86,6 @@ export default class Application extends React.Component{
 					index={this.state.index} 
 					add={this.addRecipe.bind(this)}
 					update={this.updateRecipe.bind(this)}/>		
-					
 			</div>		
 			
 		)
