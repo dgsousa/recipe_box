@@ -5,21 +5,21 @@ import * as RecipeActionTypes from './actiontypes/recipes';
 
 export const addRecipe = recipe => {
 	return {
-		type: RecipeActionTypes.ADD_PLAYER,
+		type: RecipeActionTypes.ADD_RECIPE,
 		recipe
 	};
 };
 
 export const removeRecipe = index => {
 	return {
-		type: RecipeActionTypes.REMOVE_PLAYER,
+		type: RecipeActionTypes.REMOVE_RECIPE,
 		index
 	};
 };
 
 export const updateRecipe = (recipe, index) => {
 	return {
-		type: RecipeActionTypes.UPDATE_PLAYER,
+		type: RecipeActionTypes.UPDATE_RECIPE,
 		recipe,
 		index
 	};
