@@ -17,9 +17,9 @@ export default class Application extends Component{
 		}
 	}
 
-	updateRecipe(recipe, index) {
+	updateRecipe(index, recipe) {
 		const recipes = this.state.recipes;
-		recipes.splice(index, 1, recipe);
+		recipe ? recipes.splice(index, 1, recipe) : recipes.splice(index, 1);
 		this.setState({
 			recipes: recipes,
 			index: -1
@@ -30,15 +30,6 @@ export default class Application extends Component{
 	addRecipe(recipe) {
 		const recipes = this.state.recipes;
 		recipes.push(recipe);
-		this.setState({
-			recipes: recipes
-		})
-		localStorage._recipes = JSON.stringify(this.state.recipes);
-	}
-
-	removeRecipe(index) {
-		const recipes = this.state.recipes;
-		recipes.splice(index, 1);
 		this.setState({
 			recipes: recipes
 		})
@@ -60,7 +51,7 @@ export default class Application extends Component{
 				<Accordion 
 					recipes={this.state.recipes}
 					editRecipe={this.setCurrentRecipe.bind(this)}
-					onRemove={this.removeRecipe.bind(this)}/>
+					onRemove={this.updateRecipe.bind(this)}/>
 				
 				<button 
 					className="btn btn-danger" 
