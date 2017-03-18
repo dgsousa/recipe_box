@@ -17,14 +17,23 @@ export default class Application extends Component{
 		}
 	}
 
-	updateRecipe(index, recipe=null) {
+	updateRecipe(index, recipe) {
 		const recipes = this.state.recipes;
-		recipe ? recipes.splice(index, 1, recipe) : recipes.splice(index, 1);
-		console.log(recipes);
+		recipes.splice(index, 1, recipe);
 		this.setState({
 			recipes: recipes,
 			index: -1
 		});
+		localStorage._recipes = JSON.stringify(this.state.recipes);
+	}
+
+	removeRecipe(index) {
+		const recipes = this.state.recipes;
+		recipes.splice(index, 1)
+		this.setState({
+			recipes: recipes,
+			index: index
+		})
 		localStorage._recipes = JSON.stringify(this.state.recipes);
 	}
 
@@ -52,7 +61,7 @@ export default class Application extends Component{
 				<Accordion 
 					recipes={this.state.recipes}
 					editRecipe={this.setCurrentRecipe.bind(this)}
-					onRemove={this.updateRecipe.bind(this)}/>
+					onRemove={this.removeRecipe.bind(this)}/>
 				
 				<button 
 					className="btn btn-danger" 
