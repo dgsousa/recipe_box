@@ -17,9 +17,10 @@ export default class Application extends Component{
 		}
 	}
 
-	updateRecipe(index, recipe) {
+	updateRecipe(index, recipe=null) {
 		const recipes = this.state.recipes;
 		recipe ? recipes.splice(index, 1, recipe) : recipes.splice(index, 1);
+		console.log(recipes);
 		this.setState({
 			recipes: recipes,
 			index: -1
