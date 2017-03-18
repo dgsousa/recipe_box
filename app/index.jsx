@@ -8,16 +8,17 @@ import './scss/application.scss';
 import Application from './components/Application.jsx';
 
 
-const initialData = {
-		recipes: [],
-		currentRecipe: {
-			name: '',
-			ingredients: []
-		},
-		index: -1
-}
+const initialData = JSON.stringify({
+	recipes: [],
+	currentRecipe: {
+		name: '',
+		ingredients: []
+	},
+	index: -1
+})
 
-const store = createStore(RecipeReducer, initialData)
+
+const store = createStore(RecipeReducer, JSON.parse(localStorage._data || initialData))
 
 ReactDOM.render(
 	<Provider store={store}>

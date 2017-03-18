@@ -13,6 +13,7 @@ class Application extends Component{
 	}
 
 	render() {
+		localStorage._data = JSON.stringify(this.props);
 		const {dispatch, recipes, currentRecipe, index} = this.props;
 		const addRecipe = bindActionCreators(RecipeActionCreators.addRecipe, dispatch);
 		const updateRecipe = bindActionCreators(RecipeActionCreators.updateRecipe, dispatch);
