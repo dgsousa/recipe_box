@@ -1,20 +1,15 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as RecipeActionCreators from '../actions/recipes.jsx';
 import Accordion from './Accordion.jsx';
 import ModalContainer from './ModalContainer.jsx';
 
 
 
-export default class Application extends Component{
+class Application extends Component{
 	constructor(props) {
 		super(props);
-		this.state = {
-			recipes: this.props.data,
-			currentRecipe: {
-				name: '',
-				ingredients: []
-			},
-			index: -1
-		}
 	}
 
 	updateRecipe(recipe, index) {
@@ -24,7 +19,6 @@ export default class Application extends Component{
 			recipes: recipes,
 			index: -1
 		});
-		localStorage._recipes = JSON.stringify(this.state.recipes);
 	}
 
 	addRecipe(recipe) {
@@ -33,7 +27,6 @@ export default class Application extends Component{
 		this.setState({
 			recipes: recipes
 		})
-		localStorage._recipes = JSON.stringify(this.state.recipes);
 	}
 
 	removeRecipe(index) {
@@ -42,7 +35,6 @@ export default class Application extends Component{
 		this.setState({
 			recipes: recipes
 		})
-		localStorage._recipes = JSON.stringify(this.state.recipes);
 	}
 
 	setCurrentRecipe(index = -1) {
@@ -82,6 +74,8 @@ export default class Application extends Component{
 	}
 }
 
+
+
 Application.propTypes = {
 	data: PropTypes.arrayOf(React.PropTypes.shape({
 		name: PropTypes.string.isRequired,
@@ -89,8 +83,15 @@ Application.propTypes = {
 	}))
 }
 
+const mapStateToProps = (state) => (
+	{
+		recipes: state.recipes,
+		currentRecipe: state.currentRecipe,
+		index: state.index
+	}
+)
 
-
+export default connect(mapStateToProps)(Application);
 
 
 
