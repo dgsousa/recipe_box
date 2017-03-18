@@ -1,10 +1,9 @@
-import * as RecipeActionTypes from '../actions/recipes.jsx';
-
+import * as RecipeActionTypes from '../actiontypes/recipes.jsx';
 
 export default function Recipe(state, action) {
-	console.log(state);
 	switch(action.type) {
-		case RecipeActionTypes.ADD_RECIPE: {
+		
+		case RecipeActionTypes.ADD_RECIPE: {	
 			const recipes = [...state.recipes, action.recipe]
 			return {
 				...state,
@@ -13,7 +12,7 @@ export default function Recipe(state, action) {
 		}
 		
 		case RecipeActionTypes.REMOVE_RECIPE: {
-			const recipes = state.recipes.splice(index, 1);
+			const recipes = [...state.recipes.slice(0, action.index), ...state.recipes.slice(action.index + 1)];
 			return {
 				...state,
 				recipes: recipes
@@ -22,10 +21,11 @@ export default function Recipe(state, action) {
 
 
 		case RecipeActionTypes.UPDATE_RECIPE: {
-			const recipes = state.recipes.splice(index, 1, action.recipe)
+			const recipes = [...state.recipes.slice(0, action.index), action.recipe, ...state.recipes.slice(action.index + 1)];
 			return {
 				...state,
-				recipes: recipes
+				recipes: recipes, 
+				index: action.index
 			}
 		}
 
@@ -33,7 +33,8 @@ export default function Recipe(state, action) {
 			const currentRecipe = action.index === -1 ? {name: '', ingredients: []} : state.recipes[action.index];
 			return {
 				...state,
-				currentRecipe: currentRecipe
+				currentRecipe: currentRecipe,
+				index: action.index
 			}
 			
 		}

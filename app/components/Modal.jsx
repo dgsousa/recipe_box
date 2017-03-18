@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 
 const Modal = (props)=>{
-	
+
 	return (
 		<div className="modal fade" id="myModal">
 		    <div className="modal-dialog" role="document">

@@ -6,8 +6,7 @@ export default class ModalContainer extends Component {
 		super(props);
 		this.state = {
 			name: '',
-			ingredients: [],
-			index: this.props.index
+			ingredients: []
 		}
 	}
 
@@ -36,7 +35,7 @@ export default class ModalContainer extends Component {
 	updateRecipe(e) {
 		e.preventDefault();
 		if(this.state.name && this.state.ingredients) {
-			this.props.update(this.state, this.props.index);
+			this.props.update(this.props.index, this.state);
 		}
 	}
 

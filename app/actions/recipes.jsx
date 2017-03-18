@@ -1,6 +1,4 @@
-import * as RecipeActionTypes from './actiontypes/recipes';
-
-
+import * as RecipeActionTypes from '../actiontypes/recipes.jsx';
 
 
 export const addRecipe = recipe => {
@@ -10,10 +8,17 @@ export const addRecipe = recipe => {
 	};
 };
 
-export const updateRecipe = (index, recipe=null) => {
+export const updateRecipe = (index, recipe) => {
 	return {
 		type: RecipeActionTypes.UPDATE_RECIPE,
-		recipe,
+		index,
+		recipe
+	};
+};
+
+export const removeRecipe = (index) => {
+	return {
+		type: RecipeActionTypes.REMOVE_RECIPE,
 		index
 	};
 };
