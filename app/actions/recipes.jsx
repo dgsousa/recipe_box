@@ -10,14 +10,7 @@ export const addRecipe = recipe => {
 	};
 };
 
-export const removeRecipe = index => {
-	return {
-		type: RecipeActionTypes.REMOVE_RECIPE,
-		index
-	};
-};
-
-export const updateRecipe = (recipe, index) => {
+export const updateRecipe = (index, recipe=null) => {
 	return {
 		type: RecipeActionTypes.UPDATE_RECIPE,
 		recipe,
