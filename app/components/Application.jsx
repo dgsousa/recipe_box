@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as RecipeActionCreators from '../actions/recipes.jsx';
-import Recipe from './Recipe.jsx';
-import ModalContainer from './ModalContainer.jsx';
+import React, {Component, PropTypes} from "react";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import * as RecipeActionCreators from "../actions/recipes.jsx";
+import Recipe from "./Recipe.jsx";
+import ModalContainer from "./ModalContainer.jsx";
 
 
 
@@ -26,17 +26,17 @@ class Application extends Component{
 					recipe={recipe} 
 					key={index} 
 					index={index}
-					onRemove={()=> {removeRecipe(index)}}
-					onEdit={()=> {setCurrentRecipe(index)}}
+					onRemove={()=> {removeRecipe(index);}}
+					onEdit={()=> {setCurrentRecipe(index);}}
 				/>
-			)
-		})
+			);
+		});
 
 		return (
 			<div>
 				<div className="main">
 					<div id="accordion" role="tablist" aria-multiselectable="true">
-					  	{recipe}  
+						{recipe}  
 					</div>
 				</div>
 				
@@ -45,7 +45,7 @@ class Application extends Component{
 					id="bottom-button"
 					data-toggle="modal" 
 					data-target="#myModal"
-					onClick={()=>{setCurrentRecipe()}}>
+					onClick={()=>{setCurrentRecipe();}}>
 					Add A Recipe!
 				</button>
 	
@@ -56,7 +56,7 @@ class Application extends Component{
 					update={updateRecipe}/>		
 			</div>		
 			
-		)
+		);
 	}
 }
 
@@ -72,16 +72,16 @@ Application.propTypes = {
 		ingredients: PropTypes.arrayOf(React.PropTypes.string.isRequired)
 	}),
 	index: PropTypes.number.isRequired
-}
+};
 
 
 
 
 const mapStateToProps = (state) => ({
-		recipes: state.recipes,
-		currentRecipe: state.currentRecipe,
-		index: state.index
-})
+	recipes: state.recipes,
+	currentRecipe: state.currentRecipe,
+	index: state.index
+});
 
 export default connect(mapStateToProps)(Application);
 

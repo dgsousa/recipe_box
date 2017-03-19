@@ -1,13 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import Modal from './Modal.jsx';
+import React, {Component, PropTypes} from "react";
+import Modal from "./Modal.jsx";
 
 export default class ModalContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: '',
+			name: "",
 			ingredients: []
-		}
+		};
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -16,20 +16,20 @@ export default class ModalContainer extends Component {
 				name: nextProps.currentRecipe.name,
 				ingredients: nextProps.currentRecipe.ingredients,
 				index: nextProps.index
-			})	
+			});	
 		}
 	}
 
 	updateName(e) {
 		this.setState({
 			name: e.target.value
-		})
+		});
 	}
 
 	updateIngredients(e) {
 		this.setState({
-			ingredients: e.target.value.split(',')
-		})
+			ingredients: e.target.value.split(",")
+		});
 	}
 
 	updateRecipe(e) {
@@ -55,7 +55,7 @@ export default class ModalContainer extends Component {
 				name={this.state.name}
 				ingredients={this.state.ingredients}
 				index={this.props.index}/>
-		)
+		);
 	}
 }
 
@@ -68,7 +68,7 @@ ModalContainer.propTypes = {
 	index: PropTypes.number.isRequired,
 	add: PropTypes.func.isRequired,
 	update: PropTypes.func.isRequired
-}
+};
 
 
 

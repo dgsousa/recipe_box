@@ -1,4 +1,4 @@
-import * as RecipeActionTypes from '../actiontypes/recipes.jsx';
+import * as RecipeActionTypes from "../actiontypes/recipes.jsx";
 
 
 export const addRecipe = recipe => {
