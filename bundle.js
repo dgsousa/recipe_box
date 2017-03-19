@@ -72,22 +72,22 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var initialData = {
+	var initialData = JSON.stringify({
 		recipes: [],
 		currentRecipe: {
-			name: '',
+			name: "",
 			ingredients: []
 		},
 		index: -1
-	};
+	});
 
-	var store = (0, _redux.createStore)(_recipes2.default, initialData);
+	var store = (0, _redux.createStore)(_recipes2.default, JSON.parse(localStorage._data || initialData));
 
 	_reactDom2.default.render(_react2.default.createElement(
 		_reactRedux.Provider,
 		{ store: store },
 		_react2.default.createElement(_Application2.default, null)
-	), document.getElementById('app'));
+	), document.getElementById("app"));
 
 /***/ },
 /* 1 */
@@ -23783,7 +23783,7 @@
 /* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -23802,8 +23802,8 @@
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	function Recipe(state, action) {
-		switch (action.type) {
 
+		switch (action.type) {
 			case RecipeActionTypes.ADD_RECIPE:
 				{
 					var recipes = [].concat(_toConsumableArray(state.recipes), [action.recipe]);
@@ -23831,7 +23831,7 @@
 
 			case RecipeActionTypes.SET_CURRENT_RECIPE:
 				{
-					var currentRecipe = action.index === -1 ? { name: '', ingredients: [] } : state.recipes[action.index];
+					var currentRecipe = action.index === -1 ? { name: "", ingredients: [] } : state.recipes[action.index];
 					return _extends({}, state, {
 						currentRecipe: currentRecipe,
 						index: action.index
@@ -35581,7 +35581,7 @@
 /* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -35629,8 +35629,9 @@
 		}
 
 		_createClass(Application, [{
-			key: 'render',
+			key: "render",
 			value: function render() {
+				localStorage._data = JSON.stringify(this.props);
 				var _props = this.props,
 				    dispatch = _props.dispatch,
 				    recipes = _props.recipes,
@@ -35657,28 +35658,28 @@
 				});
 
 				return _react2.default.createElement(
-					'div',
+					"div",
 					null,
 					_react2.default.createElement(
-						'div',
-						{ className: 'main' },
+						"div",
+						{ className: "main" },
 						_react2.default.createElement(
-							'div',
-							{ id: 'accordion', role: 'tablist', 'aria-multiselectable': 'true' },
+							"div",
+							{ id: "accordion", role: "tablist", "aria-multiselectable": "true" },
 							recipe
 						)
 					),
 					_react2.default.createElement(
-						'button',
+						"button",
 						{
-							className: 'btn btn-danger',
-							id: 'bottom-button',
-							'data-toggle': 'modal',
-							'data-target': '#myModal',
+							className: "btn btn-danger",
+							id: "bottom-button",
+							"data-toggle": "modal",
+							"data-target": "#myModal",
 							onClick: function onClick() {
 								setCurrentRecipe();
 							} },
-						'Add A Recipe!'
+						"Add A Recipe!"
 					),
 					_react2.default.createElement(_ModalContainer2.default, {
 						currentRecipe: currentRecipe,
@@ -35718,7 +35719,7 @@
 /* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -35766,7 +35767,7 @@
 /* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -35784,58 +35785,58 @@
 
 	var Recipe = function Recipe(props) {
 		return _react2.default.createElement(
-			'div',
-			{ className: 'card panel' },
+			"div",
+			{ className: "card panel" },
 			_react2.default.createElement(
-				'div',
-				{ className: 'card-header', role: 'tab', id: 'headingOne' },
+				"div",
+				{ className: "card-header", role: "tab", id: "headingOne" },
 				_react2.default.createElement(
-					'h5',
-					{ className: 'mb-0' },
+					"h5",
+					{ className: "mb-0" },
 					_react2.default.createElement(
-						'a',
-						{ 'data-toggle': 'collapse',
-							'data-parent': '#accordion',
+						"a",
+						{ "data-toggle": "collapse",
+							"data-parent": "#accordion",
 							href: "#collapse" + props.index,
-							'aria-expanded': 'true',
-							'aria-controls': "collapse" + props.index },
+							"aria-expanded": "true",
+							"aria-controls": "collapse" + props.index },
 						props.recipe.name
 					)
 				)
 			),
 			_react2.default.createElement(
-				'div',
-				{ id: "collapse" + props.index, className: 'collapse show', role: 'tabpanel', 'aria-labelledby': 'headingOne' },
+				"div",
+				{ id: "collapse" + props.index, className: "collapse show", role: "tabpanel", "aria-labelledby": "headingOne" },
 				_react2.default.createElement(
-					'div',
-					{ className: 'card-block' },
+					"div",
+					{ className: "card-block" },
 					_react2.default.createElement(
-						'div',
-						{ className: 'recipe-header' },
+						"div",
+						{ className: "recipe-header" },
 						_react2.default.createElement(
-							'h4',
+							"h4",
 							null,
-							'Ingredients'
+							"Ingredients"
 						)
 					),
 					_react2.default.createElement(_Ingredients2.default, { ingredients: props.recipe.ingredients }),
 					_react2.default.createElement(
-						'div',
-						{ className: 'buttonDiv' },
+						"div",
+						{ className: "buttonDiv" },
 						_react2.default.createElement(
-							'button',
+							"button",
 							{
-								className: 'btn btn-danger',
+								className: "btn btn-danger",
 								onClick: props.onRemove },
-							'Delete'
+							"Delete"
 						),
 						_react2.default.createElement(
-							'button',
-							{ className: 'btn btn-secondary',
+							"button",
+							{ className: "btn btn-secondary",
 								onClick: props.onEdit,
-								'data-toggle': 'modal',
-								'data-target': '#myModal' },
-							'Edit'
+								"data-toggle": "modal",
+								"data-target": "#myModal" },
+							"Edit"
 						)
 					)
 				)
@@ -35924,7 +35925,7 @@
 /* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -35957,14 +35958,14 @@
 			var _this = _possibleConstructorReturn(this, (ModalContainer.__proto__ || Object.getPrototypeOf(ModalContainer)).call(this, props));
 
 			_this.state = {
-				name: '',
+				name: "",
 				ingredients: []
 			};
 			return _this;
 		}
 
 		_createClass(ModalContainer, [{
-			key: 'componentWillReceiveProps',
+			key: "componentWillReceiveProps",
 			value: function componentWillReceiveProps(nextProps) {
 				if (this.props !== nextProps) {
 					this.setState({
@@ -35975,21 +35976,21 @@
 				}
 			}
 		}, {
-			key: 'updateName',
+			key: "updateName",
 			value: function updateName(e) {
 				this.setState({
 					name: e.target.value
 				});
 			}
 		}, {
-			key: 'updateIngredients',
+			key: "updateIngredients",
 			value: function updateIngredients(e) {
 				this.setState({
-					ingredients: e.target.value.split(',')
+					ingredients: e.target.value.split(",")
 				});
 			}
 		}, {
-			key: 'updateRecipe',
+			key: "updateRecipe",
 			value: function updateRecipe(e) {
 				e.preventDefault();
 				if (this.state.name && this.state.ingredients) {
@@ -35997,7 +35998,7 @@
 				}
 			}
 		}, {
-			key: 'addRecipe',
+			key: "addRecipe",
 			value: function addRecipe(e) {
 				e.preventDefault();
 				if (this.state.name && this.state.ingredients) {
@@ -36005,7 +36006,7 @@
 				}
 			}
 		}, {
-			key: 'render',
+			key: "render",
 			value: function render() {
 				return _react2.default.createElement(_Modal2.default, {
 					onSubmit: this.props.index === -1 ? this.addRecipe.bind(this) : this.updateRecipe.bind(this),
