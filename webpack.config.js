@@ -5,7 +5,7 @@ module.exports = {
 	context: __dirname + '/app',
 	entry: './index.jsx',
 	output: {
-		path: 'public',
+		path: __dirname + '/public',
 		filename: 'bundle.js'
 	},
 	module: {
@@ -13,12 +13,12 @@ module.exports = {
 			{
 				test: /\.jsx$/,
 				exclude: '/node_modules/',
-				loaders: ["babel-loader", "eslint"]
+				loaders: ["babel-loader", "eslint-loader"]
 			},
 			{
 				test: /\.scss$/,
-				loaders: ['style', 'css', 'sass'],
-				exlude: '/node_modules/'
+				exclude: '/node_modules/',
+				loaders: ["style-loader", "css-loader", "sass-loader"]
 			},
       		{ 
       			test: /bootstrap\/dist\/js\/umd\//, 
@@ -32,18 +32,15 @@ module.exports = {
 	},
 
 	plugins: [
-				  new webpack.ProvidePlugin({
-				    $: "jquery",
-				    jQuery: "jquery",
-				    "window.jQuery": "jquery",
-				    Tether: "tether",
-				    "window.Tether": "tether",
-				    Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
-				    Util: "exports-loader?Util!bootstrap/js/dist/util"
-				  })
-			],
-
-	postcss: {}
-	
+				new webpack.ProvidePlugin({
+					$: "jquery",
+					jQuery: "jquery",
+					"window.jQuery": "jquery",
+					Tether: "tether",
+					"window.Tether": "tether",
+					Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
+					Util: "exports-loader?Util!bootstrap/js/dist/util"
+				})
+			]
 	
 }

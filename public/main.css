@@ -1,0 +1,52 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);* {
+  box-sizing: border-box; }
+
+body {
+  background: #438496; }
+
+.main {
+  background: #438496; }
+
+.btn:focus {
+  outline: none; }
+
+body {
+  font-family: 'Nunito'; }
+
+.btn {
+  font-family: 'Nunito'; }
+
+.recipe-header {
+  text-align: center; }
+
+body {
+  width: 80%;
+  margin: 5% auto; }
+
+.main {
+  width: 100%;
+  margin: 5% auto;
+  padding: 10px; }
+
+#accordion {
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  padding-top: 15px; }
+
+#bottom-button {
+  margin-left: 6%; }
+
+.recipe-header {
+  padding-bottom: 30px;
+  border-bottom: 1px solid grey;
+  margin-bottom: 20px; }
+
+.buttonDiv {
+  margin-top: 20px; }
+
+button {
+  margin-right: 10px; }
+
+.modal {
+  margin-top: 10%; }

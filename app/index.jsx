@@ -20,6 +20,8 @@ const initialData = JSON.stringify({
 
 const store = createStore(RecipeReducer, JSON.parse(localStorage._data || initialData));
 
+
+
 ReactDOM.render(
 	<Provider store={store}>
 		<Application/>
