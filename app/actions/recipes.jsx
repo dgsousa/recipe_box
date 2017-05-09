@@ -1,31 +1,50 @@
-import * as RecipeActionTypes from "../actiontypes/recipes.jsx";
 
 
-export const addRecipe = recipe => {
+export const addRecipe = e => {
+	e.preventDefault();
+	if(e.target.name.value && e.target.ingredients.value) {
+		return {
+			type: "ADD_RECIPE",
+			recipe: {
+				name: e.target.name.value,
+				ingredients: e.target.ingredients.value.split(",")
+			}
+		};
+	}
 	return {
-		type: RecipeActionTypes.ADD_RECIPE,
-		recipe
+		type: "DEFAULT"
 	};
 };
 
-export const updateRecipe = (index, recipe) => {
-	return {
-		type: RecipeActionTypes.UPDATE_RECIPE,
-		index,
-		recipe
-	};
+export const updateRecipe = (e, index) => {
+	e.preventDefault();
+	if(e.target.name.value && e.target.ingredients.value) {
+		return {
+			type: "UPDATE_RECIPE",
+			index,
+			recipe: {
+				name: e.target.name.value,
+				ingredients: e.target.ingredients.value.split(",")
+			}
+		};
+	} else {
+		return {
+			type: "REMOVE_RECIPE",
+			index
+		};
+	}
 };
 
 export const removeRecipe = (index) => {
 	return {
-		type: RecipeActionTypes.REMOVE_RECIPE,
+		type: "REMOVE_RECIPE",
 		index
 	};
 };
 
-export const setCurrentRecipe = (index=-1) => {
+export const setCurrentRecipe = (index = -1) => {
 	return {
-		type: RecipeActionTypes.SET_CURRENT_RECIPE,
+		type: "SET_CURRENT_RECIPE",
 		index
 	};
 };

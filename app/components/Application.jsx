@@ -1,64 +1,34 @@
 import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
-import * as RecipeActionCreators from "../actions/recipes.jsx";
 import Recipe from "./Recipe.jsx";
-import ModalContainer from "./ModalContainer.jsx";
+import Modal from "./Modal.jsx";
+import AddRecipe from "./AddRecipe.jsx";
 
 
 
 class Application extends Component{
-	constructor(props) {
-		super(props);
-	}
 
 	componentDidUpdate(prevProps) {
+
 		if(prevProps != this.props) {
-			localStorage._data = JSON.stringify(this.props);
+			localStorage._data = JSON.stringify({
+				recipes: this.props.recipes,
+				currentRecipe: {
+					name: "",
+					ingredients: []
+				},
+				index: -1
+			});
 		}
 	}
 
 	render() {
-		const {dispatch, recipes, currentRecipe, index} = this.props;
-		const addRecipe = bindActionCreators(RecipeActionCreators.addRecipe, dispatch);
-		const updateRecipe = bindActionCreators(RecipeActionCreators.updateRecipe, dispatch);
-		const removeRecipe = bindActionCreators(RecipeActionCreators.removeRecipe, dispatch);
-		const setCurrentRecipe = bindActionCreators(RecipeActionCreators.setCurrentRecipe, dispatch);
-
-		const recipe = recipes.map((recipe, index)=> {
-			return (
-				<Recipe 
-					recipe={recipe} 
-					key={index} 
-					index={index}
-					onRemove={()=> {removeRecipe(index);}}
-					onEdit={()=> {setCurrentRecipe(index);}}
-				/>
-			);
-		});
-
+		const {recipes} = this.props;
 		return (
 			<div>
-				<div className="main">
-					<div id="accordion" role="tablist" aria-multiselectable="true">
-						{recipe}  
-					</div>
-				</div>
-				
-				<button 
-					className="btn btn-danger" 
-					id="bottom-button"
-					data-toggle="modal" 
-					data-target="#myModal"
-					onClick={()=>{setCurrentRecipe();}}>
-					Add A Recipe!
-				</button>
-	
-				<ModalContainer 
-					currentRecipe={currentRecipe} 
-					index={index} 
-					add={addRecipe}
-					update={updateRecipe}/>		
+				{recipes.map((recipe, index) => <Recipe key={index} index={index}/>)}
+				<AddRecipe />
+				<Modal />		
 			</div>		
 			
 		);
