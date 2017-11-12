@@ -1207,7 +1207,7 @@ var _prodInvariant = __webpack_require__(3),
 var CallbackQueue = __webpack_require__(66);
 var PooledClass = __webpack_require__(15);
 var ReactFeatureFlags = __webpack_require__(71);
-var ReactReconciler = __webpack_require__(20);
+var ReactReconciler = __webpack_require__(19);
 var Transaction = __webpack_require__(30);
 
 var invariant = __webpack_require__(1);
@@ -1484,7 +1484,7 @@ module.exports = ReactCurrentOwner;
 "use strict";
 
 
-module.exports = __webpack_require__(21);
+module.exports = __webpack_require__(20);
 
 
 /***/ }),
@@ -2488,24 +2488,6 @@ module.exports = reactProdInvariant;
 
 /***/ }),
 /* 18 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(210);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connect", function() { return __WEBPACK_IMPORTED_MODULE_2__connect_connect__["a"]; });
-
-
-
-
-
-
-/***/ }),
-/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2628,7 +2610,7 @@ DOMLazyTree.queueText = queueText;
 module.exports = DOMLazyTree;
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2802,7 +2784,7 @@ module.exports = ReactReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2895,6 +2877,24 @@ var React = {
 
 module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(210);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connect", function() { return __WEBPACK_IMPORTED_MODULE_2__connect_connect__["a"]; });
+
+
+
+
+
 
 /***/ }),
 /* 22 */
@@ -4606,22 +4606,39 @@ module.exports = setInnerHTML;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-var addRecipe = exports.addRecipe = function addRecipe(recipe) {
+var addRecipe = exports.addRecipe = function addRecipe(e) {
+	e.preventDefault();
+	if (e.target.name.value && e.target.ingredients.value) {
+		return {
+			type: "ADD_RECIPE",
+			recipe: {
+				name: e.target.name.value,
+				ingredients: e.target.ingredients.value.split(",")
+			}
+		};
+	}
 	return {
-		type: "ADD_RECIPE",
-		recipe: {
-			name: recipe.name,
-			ingredients: recipe.ingredients
-		}
+		type: "DEFAULT"
 	};
 };
 
-var updateRecipe = exports.updateRecipe = function updateRecipe(index, recipe) {
-	return {
-		type: "UPDATE_RECIPE",
-		index: index,
-		recipe: recipe
-	};
+var updateRecipe = exports.updateRecipe = function updateRecipe(e, index) {
+	e.preventDefault();
+	if (e.target.name.value && e.target.ingredients.value) {
+		return {
+			type: "UPDATE_RECIPE",
+			index: index,
+			recipe: {
+				name: e.target.name.value,
+				ingredients: e.target.ingredients.value.split(",")
+			}
+		};
+	} else {
+		return {
+			type: "REMOVE_RECIPE",
+			index: index
+		};
+	}
 };
 
 var removeRecipe = exports.removeRecipe = function removeRecipe(index) {
@@ -15029,7 +15046,7 @@ function isPlainObject(value) {
 
 
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(18);
 var Danger = __webpack_require__(143);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(8);
@@ -15583,7 +15600,7 @@ module.exports = KeyEscapeUtils;
 
 var _prodInvariant = __webpack_require__(3);
 
-var React = __webpack_require__(21);
+var React = __webpack_require__(20);
 var ReactPropTypesSecret = __webpack_require__(76);
 
 var invariant = __webpack_require__(1);
@@ -18591,9 +18608,9 @@ module.exports = ReactInputSelection;
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(18);
 var DOMProperty = __webpack_require__(14);
-var React = __webpack_require__(21);
+var React = __webpack_require__(20);
 var ReactBrowserEventEmitter = __webpack_require__(28);
 var ReactCurrentOwner = __webpack_require__(11);
 var ReactDOMComponentTree = __webpack_require__(5);
@@ -18603,7 +18620,7 @@ var ReactFeatureFlags = __webpack_require__(71);
 var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactMarkupChecksum = __webpack_require__(175);
-var ReactReconciler = __webpack_require__(20);
+var ReactReconciler = __webpack_require__(19);
 var ReactUpdateQueue = __webpack_require__(44);
 var ReactUpdates = __webpack_require__(10);
 
@@ -19136,7 +19153,7 @@ module.exports = ReactMount;
 
 var _prodInvariant = __webpack_require__(3);
 
-var React = __webpack_require__(21);
+var React = __webpack_require__(20);
 
 var invariant = __webpack_require__(1);
 
@@ -21136,7 +21153,7 @@ var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(18);
+var _reactRedux = __webpack_require__(21);
 
 var _Recipe = __webpack_require__(106);
 
@@ -21170,7 +21187,6 @@ var Application = function (_Component) {
 	_createClass(Application, [{
 		key: "componentDidUpdate",
 		value: function componentDidUpdate(prevProps) {
-
 			if (prevProps != this.props) {
 				localStorage._data = JSON.stringify({
 					recipes: this.props.recipes,
@@ -21340,7 +21356,7 @@ var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(18);
+var _reactRedux = __webpack_require__(21);
 
 var _recipes = __webpack_require__(33);
 
@@ -21362,15 +21378,11 @@ var AddRecipe = function AddRecipe(_ref) {
 	);
 };
 
-var mapStateToProps = function mapStateToProps(state) {
-	return {};
-};
-
 AddRecipe.propTypes = {
 	setCurrentRecipe: _react.PropTypes.func.isRequired
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { setCurrentRecipe: _recipes.setCurrentRecipe })(AddRecipe);
+exports.default = (0, _reactRedux.connect)(null, { setCurrentRecipe: _recipes.setCurrentRecipe })(AddRecipe);
 
 /***/ }),
 /* 104 */
@@ -21386,8 +21398,6 @@ Object.defineProperty(exports, "__esModule", {
 var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21435,7 +21445,7 @@ var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(18);
+var _reactRedux = __webpack_require__(21);
 
 var _recipes = __webpack_require__(33);
 
@@ -21466,13 +21476,11 @@ var Modal = function (_Component) {
 	_createClass(Modal, [{
 		key: "componentWillReceiveProps",
 		value: function componentWillReceiveProps(nextProps) {
-			if (this.props !== nextProps) {
-				this.setState({
-					name: nextProps.currentRecipe.name,
-					ingredients: nextProps.currentRecipe.ingredients,
-					index: nextProps.index
-				});
-			}
+			this.setState({
+				name: nextProps.currentRecipe.name,
+				ingredients: nextProps.currentRecipe.ingredients,
+				index: nextProps.index
+			});
 		}
 	}, {
 		key: "handleNameChange",
@@ -21489,40 +21497,15 @@ var Modal = function (_Component) {
 			});
 		}
 	}, {
-		key: "update",
-		value: function update(e) {
-			e.preventDefault();
-			var _props = this.props,
-			    updateRecipe = _props.updateRecipe,
-			    index = _props.index;
-			var _state = this.state,
-			    name = _state.name,
-			    ingredients = _state.ingredients;
-
-			if (name && ingredients) {
-				updateRecipe(index, this.state);
-			}
-		}
-	}, {
-		key: "add",
-		value: function add(e) {
-			e.preventDefault();
-			var addRecipe = this.props.addRecipe;
-			var _state2 = this.state,
-			    name = _state2.name,
-			    ingredients = _state2.ingredients;
-
-			if (name && ingredients) {
-				addRecipe(this.state);
-			}
-		}
-	}, {
 		key: "render",
 		value: function render() {
-			var _state3 = this.state,
-			    name = _state3.name,
-			    ingredients = _state3.ingredients,
-			    index = _state3.index;
+			var _state = this.state,
+			    name = _state.name,
+			    ingredients = _state.ingredients,
+			    index = _state.index;
+			var _props = this.props,
+			    addRecipe = _props.addRecipe,
+			    updateRecipe = _props.updateRecipe;
 
 			return _react2.default.createElement(
 				"div",
@@ -21557,7 +21540,9 @@ var Modal = function (_Component) {
 							{ className: "modal-body" },
 							_react2.default.createElement(
 								"form",
-								{ onSubmit: index === -1 ? this.add.bind(this) : this.update.bind(this) },
+								{ onSubmit: index === -1 ? addRecipe : function (e) {
+										updateRecipe(e, index);
+									} },
 								_react2.default.createElement(
 									"div",
 									{ className: "form-group" },
@@ -21623,8 +21608,6 @@ var Modal = function (_Component) {
 	return Modal;
 }(_react.Component);
 
-;
-
 Modal.propTypes = {
 	currentRecipe: _react.PropTypes.shape({
 		name: _react.PropTypes.string.isRequired,
@@ -21635,7 +21618,7 @@ Modal.propTypes = {
 	updateRecipe: _react.PropTypes.func.isRequired
 };
 
-var mapStateToProps = function mapStateToProps(state, ownProps) {
+var mapStateToProps = function mapStateToProps(state) {
 	return {
 		currentRecipe: state.currentRecipe,
 		index: state.index
@@ -21666,7 +21649,7 @@ var _Ingredients = __webpack_require__(104);
 
 var _Ingredients2 = _interopRequireDefault(_Ingredients);
 
-var _reactRedux = __webpack_require__(18);
+var _reactRedux = __webpack_require__(21);
 
 var _recipes = __webpack_require__(33);
 
@@ -21787,7 +21770,7 @@ var _reactDom = __webpack_require__(101);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRedux = __webpack_require__(18);
+var _reactRedux = __webpack_require__(21);
 
 var _redux = __webpack_require__(58);
 
@@ -24912,7 +24895,7 @@ module.exports = ChangeEventPlugin;
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(18);
 var ExecutionEnvironment = __webpack_require__(6);
 
 var createNodesFromMarkup = __webpack_require__(118);
@@ -25417,7 +25400,7 @@ module.exports = HTMLDOMPropertyConfig;
 
 
 
-var ReactReconciler = __webpack_require__(20);
+var ReactReconciler = __webpack_require__(19);
 
 var instantiateReactComponent = __webpack_require__(82);
 var KeyEscapeUtils = __webpack_require__(40);
@@ -25615,14 +25598,14 @@ module.exports = ReactComponentBrowserEnvironment;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var React = __webpack_require__(21);
+var React = __webpack_require__(20);
 var ReactComponentEnvironment = __webpack_require__(42);
 var ReactCurrentOwner = __webpack_require__(11);
 var ReactErrorUtils = __webpack_require__(43);
 var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactNodeTypes = __webpack_require__(75);
-var ReactReconciler = __webpack_require__(20);
+var ReactReconciler = __webpack_require__(19);
 
 if (process.env.NODE_ENV !== 'production') {
   var checkReactTypeSpec = __webpack_require__(198);
@@ -26525,7 +26508,7 @@ module.exports = ReactCompositeComponent;
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDefaultInjection = __webpack_require__(168);
 var ReactMount = __webpack_require__(74);
-var ReactReconciler = __webpack_require__(20);
+var ReactReconciler = __webpack_require__(19);
 var ReactUpdates = __webpack_require__(10);
 var ReactVersion = __webpack_require__(183);
 
@@ -26644,7 +26627,7 @@ var _prodInvariant = __webpack_require__(3),
 
 var AutoFocusUtils = __webpack_require__(139);
 var CSSPropertyOperations = __webpack_require__(141);
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(18);
 var DOMNamespaces = __webpack_require__(38);
 var DOMProperty = __webpack_require__(14);
 var DOMPropertyOperations = __webpack_require__(67);
@@ -27685,7 +27668,7 @@ module.exports = ReactDOMContainerInfo;
 
 var _assign = __webpack_require__(4);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(18);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 var ReactDOMEmptyComponent = function (instantiate) {
@@ -28245,7 +28228,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 
 var _assign = __webpack_require__(4);
 
-var React = __webpack_require__(21);
+var React = __webpack_require__(20);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMSelect = __webpack_require__(69);
 
@@ -28593,7 +28576,7 @@ var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
 var DOMChildrenOperations = __webpack_require__(37);
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(18);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 var escapeTextContentForBrowser = __webpack_require__(31);
@@ -30122,7 +30105,7 @@ var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(8);
 
 var ReactCurrentOwner = __webpack_require__(11);
-var ReactReconciler = __webpack_require__(20);
+var ReactReconciler = __webpack_require__(19);
 var ReactChildReconciler = __webpack_require__(148);
 
 var emptyFunction = __webpack_require__(9);

@@ -16,7 +16,6 @@ const AddRecipe = ({setCurrentRecipe}) => (
 
 );
 
-const mapStateToProps = () => ({});
 
 
 
@@ -25,6 +24,6 @@ AddRecipe.propTypes = {
 };
 
 export default connect(
-	mapStateToProps, 
+	null, 
 	{setCurrentRecipe: setCurrentRecipe}
 )(AddRecipe);

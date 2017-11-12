@@ -9,7 +9,6 @@ import AddRecipe from "./AddRecipe.jsx";
 class Application extends Component{
 
 	componentDidUpdate(prevProps) {
-
 		if(prevProps != this.props) {
 			localStorage._data = JSON.stringify({
 				recipes: this.props.recipes,
