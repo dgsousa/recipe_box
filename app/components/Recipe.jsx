@@ -1,61 +1,61 @@
-import React, {PropTypes} from "react";
-import Ingredients from "./Ingredients.jsx";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+
 import { connect } from "react-redux";
-import { removeRecipe, setCurrentRecipe } from "../actions/recipes.jsx";
+import { removeRecipe, setCurrentRecipe, changeModalState } from "../actions/recipes.jsx";
 
 
-const Recipe = ({index, recipe, removeRecipe, setCurrentRecipe}) => {
-	return (
-		<div className="main">
-			<div id="accordion" role="tablist" aria-multiselectable="true">
-				<div className="card panel">
-					<div className="card-header" role="tab" id="headingOne">
-						<h5 className="mb-0">
-							<a data-toggle="collapse" 
-								data-parent="#accordion" 
-								href={"#collapse" + index} 
-								aria-expanded="true" 
-								aria-controls={"collapse" + index}>
-								{recipe.name}
-							</a>  
-						</h5>
-					</div>	
-					<div id={"collapse" + index} className="collapse show" role="tabpanel" aria-labelledby="headingOne">
-						<div className="card-block">
-							<div className="recipe-header">
-								<h4>Ingredients</h4>
-							</div>
-								<Ingredients ingredients={recipe.ingredients}/>
-							<div className="buttonDiv">
-								<button 
-									className="btn btn-danger" 
-									onClick={() => {removeRecipe(index);}}>
-									Delete
-								</button>
-								<button className="btn btn-secondary" 
-									onClick={() => {setCurrentRecipe(index);}} 
-									data-toggle="modal" 
-									data-target="#myModal">
-									Edit
-								</button>
-							</div>
-						</div>
-					</div>			    
+class Recipe extends Component {
+	constructor(props) {
+		super(props);
+		this.removeThisRecipe = this.removeThisRecipe.bind(this);
+		this.setRecipeToCurrent = this.setRecipeToCurrent.bind(this);
+	}
+	
+	removeThisRecipe() {
+		const { removeRecipe, index } = this.props;
+		removeRecipe(index);
+	}
+
+	setRecipeToCurrent() {
+		const { setCurrentRecipe, changeModalState, index } = this.props;
+		setCurrentRecipe(index);
+		changeModalState(true);
+	}
+
+	render() {
+		const { recipe } = this.props;
+		const ingredients = recipe.ingredients.map((ingredient, index) => <li className="list-group-item" key={index}>{ingredient}</li>);
+		return (
+			<div>	
+				<div className="recipe-header">
+					<h3>Ingredients</h3>
 				</div>
+					<div className="recipe-list">
+						<ul className="list-group">
+							{ ingredients }
+						</ul>
+					</div>
+				<div className="buttonDiv">
+					<button 
+						className="btn btn-danger" 
+						onClick={ this.removeThisRecipe }
+					>
+						Delete
+					</button>
+					<button 
+						className="btn btn-primary" 
+						onClick={ this.setRecipeToCurrent } 
+					>
+						Edit
+					</button>
+				</div>			    
 			</div>
-		</div>
-	);
-};
+		);
+	}
+}
 
-Recipe.propTypes ={
-	recipe: PropTypes.shape({
-		name: PropTypes.string.isRequired,
-		ingredients: PropTypes.arrayOf(React.PropTypes.string.isRequired)
-	}),
-	index: PropTypes.number.isRequired,
-	removeRecipe: PropTypes.func.isRequired,
-	setCurrentRecipe: PropTypes.func.isRequired
-};
+
 
 const mapStateToProps = (state, ownProps) => ({
 	index: ownProps.index,
@@ -64,11 +64,20 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(
 	mapStateToProps, 
-	{
-		removeRecipe: removeRecipe,
-		setCurrentRecipe: setCurrentRecipe
-	}
+	{ removeRecipe, setCurrentRecipe, changeModalState }
 )(Recipe);
+
+
+Recipe.propTypes ={
+	recipe: PropTypes.shape({
+		name: PropTypes.string.isRequired,
+		ingredients: PropTypes.arrayOf(React.PropTypes.string.isRequired)
+	}),
+	index: PropTypes.number.isRequired,
+	removeRecipe: PropTypes.func.isRequired,
+	setCurrentRecipe: PropTypes.func.isRequired,
+	changeModalState: PropTypes.func.isRequired
+};
 
 
 

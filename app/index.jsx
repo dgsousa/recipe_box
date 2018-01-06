@@ -3,18 +3,15 @@ import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import RecipeReducer from "./reducers/recipes.jsx";
-import "bootstrap-loader";
+
 import "./scss/application.scss";
 import Application from "./components/Application.jsx";
 
 
 const initialData = JSON.stringify({
 	recipes: [],
-	currentRecipe: {
-		name: "",
-		ingredients: []
-	},
-	index: -1
+	current: -1,
+	showModal: false
 });
 
 

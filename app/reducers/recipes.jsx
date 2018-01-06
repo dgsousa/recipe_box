@@ -3,39 +3,40 @@
 export default function Recipe(state, action) {
 	switch(action.type) {	
 	case "ADD_RECIPE": {
-		const recipes = [...state.recipes, action.recipe];
 		return {
 			...state,
-			recipes: recipes
+			recipes: [...state.recipes, action.recipe]
 		};
 	}
 	
 	case "REMOVE_RECIPE": {
-		const recipes = [...state.recipes.slice(0, action.index), ...state.recipes.slice(action.index + 1)];
 		return {
 			...state,
-			recipes: recipes
+			recipes: [...state.recipes.slice(0, action.index), ...state.recipes.slice(action.index + 1)],
+			current: -1
 		};
 	}
 
-
 	case "UPDATE_RECIPE": {
-		const recipes = [...state.recipes.slice(0, action.index), action.recipe, ...state.recipes.slice(action.index + 1)];
 		return {
 			...state,
-			recipes: recipes, 
-			index: action.index
+			recipes: [...state.recipes.slice(0, state.current), action.recipe, ...state.recipes.slice(state.current + 1)]
 		};
 	}
 
 	case "SET_CURRENT_RECIPE": {
-		const currentRecipe = action.index === -1 ? {name: "", ingredients: []} : state.recipes[action.index];
 		return {
 			...state,
-			currentRecipe: currentRecipe,
-			index: action.index
+			current: action.index
 		};
 		
+	}
+
+	case "CHANGE_MODAL_STATE": {
+		return {
+			...state,
+			showModal: action.bool
+		};
 	}
 
 	default: 

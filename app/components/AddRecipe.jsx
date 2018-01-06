@@ -1,29 +1,42 @@
-import React, {PropTypes} from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setCurrentRecipe } from "../actions/recipes.jsx";
+
+import { setCurrentRecipe, changeModalState } from "../actions/recipes.jsx";
 
 
-const AddRecipe = ({setCurrentRecipe}) => (
+class AddRecipe extends Component {
+	constructor(props) {
+		super(props);
+		this.setRecipe = this.setRecipe.bind(this);
+	}
+	
+	setRecipe() {
+		const { setCurrentRecipe, changeModalState } = this.props;
+		setCurrentRecipe(-1);
+		changeModalState(true);
+	}
 
-	<button 
-		className="btn btn-danger" 
-		id="bottom-button"
-		data-toggle="modal" 
-		data-target="#myModal"
-		onClick={() => {setCurrentRecipe(-1);}}>
-		Add A Recipe!
-	</button>
+	render() {
+		return (
+			<button 
+				className="btn btn-danger" 
+				id="bottom-button"
+				onClick={this.setRecipe}>
+				Add A Recipe!
+			</button>
+		);
+	}
+}
 
-);
-
-
-
-
-AddRecipe.propTypes = {
-	setCurrentRecipe: PropTypes.func.isRequired
-};
 
 export default connect(
 	null, 
-	{setCurrentRecipe: setCurrentRecipe}
+	{ setCurrentRecipe, changeModalState }
 )(AddRecipe);
+
+
+AddRecipe.propTypes = {
+	setCurrentRecipe: PropTypes.func.isRequired,
+	changeModalState: PropTypes.func.isRequired
+};

@@ -1,3 +1,136 @@
-@import 'base/index';
-@import 'components/index';
-@import 'layout/index';
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Nunito';
+	background: #438496;
+
+	#app {
+		width: 60%;
+		margin: 10% auto;
+
+		.panel-title {
+			font-size: 24px;
+			text-align: center;
+		}
+
+		.panel-body {
+
+			.btn {
+				margin-left: 30px;
+				width: 100px;
+				outline: none;
+				&:focus {
+					outline: none;
+				}
+			}
+		}
+	}
+
+	.modal-content {
+		height: 450px;
+
+		.modal-header {
+			position: relative;
+
+			.close-button {
+				float: right;
+				margin-top: -65px;
+				border: none;
+				font-size: 30px;
+				font-weight: 800;
+				outline:none;
+				&:hover, &:focus {
+					outline: none;
+				}
+			}
+
+		}
+		
+		.modal-body {
+			height: 250px;
+
+			.name-div {
+				margin-bottom: 20px;
+			}
+
+			label {
+				width: 90%;
+				font-size: 16px;
+				margin-left: 30px;
+			}
+
+			input {
+				width: 90%;
+				margin: 10px 30px 5px;
+				height: 30px;
+				outline: none;
+				border: 2px solid grey;
+				padding-left: 10px;
+				border-radius: 3px;
+			}
+
+			.validation {
+				padding-left: 10px;
+			    width: 90%;
+			    display: block;
+			    margin: auto;
+			    font-size: 14px;
+			    color: red;
+			    height: 20px;
+			}
+		}
+
+		.modal-footer {
+			padding: 30px;
+
+			.btn {
+				width: 120px;
+				outline: none;
+				&:focus {
+					outline: none;
+				}
+			}
+
+		}
+	}
+
+	.btn {
+		width: 120px;
+		outline: none;
+		&:focus {
+			outline: none;
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

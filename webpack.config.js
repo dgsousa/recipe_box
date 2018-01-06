@@ -19,28 +19,8 @@ module.exports = {
 				test: /\.scss$/,
 				exclude: '/node_modules/',
 				loaders: ["style-loader", "css-loader", "sass-loader"]
-			},
-      		{ 
-      			test: /bootstrap\/dist\/js\/umd\//, 
-      			loaders: ['imports?jQuery=jquery'] 
-      		},
-      		{ 
-      			test: /\.json$/, 
-      			loader: 'json' 
-      		}
+			}
 		]
-	},
-
-	plugins: [
-				new webpack.ProvidePlugin({
-					$: "jquery",
-					jQuery: "jquery",
-					"window.jQuery": "jquery",
-					Tether: "tether",
-					"window.Tether": "tether",
-					Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
-					Util: "exports-loader?Util!bootstrap/js/dist/util"
-				})
-			]
+	}
 	
 }

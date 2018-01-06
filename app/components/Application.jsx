@@ -1,7 +1,10 @@
-import React, {Component, PropTypes} from "react";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Accordion, Panel } from "react-bootstrap";
+
+import { connect } from "react-redux";
 import Recipe from "./Recipe.jsx";
-import Modal from "./Modal.jsx";
+import Form from "./Form.jsx";
 import AddRecipe from "./AddRecipe.jsx";
 
 
@@ -10,14 +13,7 @@ class Application extends Component{
 
 	componentDidUpdate(prevProps) {
 		if(prevProps != this.props) {
-			localStorage._data = JSON.stringify({
-				recipes: this.props.recipes,
-				currentRecipe: {
-					name: "",
-					ingredients: []
-				},
-				index: -1
-			});
+			localStorage._data = JSON.stringify({...this.props});
 		}
 	}
 
@@ -25,15 +21,34 @@ class Application extends Component{
 		const {recipes} = this.props;
 		return (
 			<div>
-				{recipes.map((recipe, index) => <Recipe key={index} index={index}/>)}
+				<Accordion>
+					{recipes.map((recipe, index) => (
+						<Panel 
+							header={recipe.name}
+							eventKey={index}
+							collapsible={true}
+							key={index}
+						>
+							<Recipe index={index}/>
+						</Panel>))
+					}
+				</Accordion>
 				<AddRecipe />
-				<Modal />		
-			</div>		
-			
+				<Form />
+			</div>
 		);
 	}
 }
 
+
+
+const mapStateToProps = (state) => ({
+	recipes: state.recipes,
+	current: state.current,
+	showModal: state.showModal
+});
+
+export default connect(mapStateToProps)(Application);
 
 
 Application.propTypes = {
@@ -41,23 +56,10 @@ Application.propTypes = {
 		name: PropTypes.string.isRequired,
 		ingredients: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 	})).isRequired,
-	currentRecipe: PropTypes.shape({
-		name: PropTypes.string.isRequired,
-		ingredients: PropTypes.arrayOf(React.PropTypes.string.isRequired)
-	}),
-	index: PropTypes.number.isRequired
+	current: PropTypes.number.isRequired,
+	showModal: PropTypes.bool.isRequired
 };
 
-
-
-
-const mapStateToProps = (state) => ({
-	recipes: state.recipes,
-	currentRecipe: state.currentRecipe,
-	index: state.index
-});
-
-export default connect(mapStateToProps)(Application);
 
 
 
